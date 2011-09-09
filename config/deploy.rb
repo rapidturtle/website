@@ -1,22 +1,66 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'capistrano/ext/multistage'
+require 'bundler/capistrano'
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :stages, %w(staging production)
+set :default_stage, 'staging'
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :scm, :git
+set :repository, "git@home.eyequeue.us:Repositories/com.rapidturtle.www.git"
+set :ssh_options, { :forward_agent => true }
+set :deploy_via, :remote_cache
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :application, "com.rapidturtle.www"
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+namespace :deploy do
+  task :default do
+    set(:branch) do
+      br = Capistrano::CLI.ui.ask "What branch do you want to deploy?: ".downcase
+      raise 'You can only deploy master branch to production.' if (stage.to_s.upcase == 'PRODUCTION') && br != 'master'
+      br
+    end
+    puts "*** Deploying to the #{stage.to_s.upcase} server!"
+    update
+    restart
+    
+    # Clean up old deployments
+    deploy.cleanup
+    
+    # Send deployment notification except, for the default stage
+  end
+  
+  # override migrations task to inject branch
+  desc <<-DESC
+  Deploy and run pending migrations. This will work similarly to the \
+  'deploy' task, but will also run any pending migrations (via the \
+  'deploy:migrate' task) prior to updating the symlink. Note that the \
+  update in this case it is not atomic, and transactions are not used, \
+  because migrations are not guaranteed to be reversible.
+  DESC
+  task :migrations do
+    set :migrate_target, :latest
+    set(:branch) do
+      br = Capistrano::CLI.ui.ask 'What branch do you want to deploy?: '.downcase
+      raise 'You can only deploy master branch to production.' if (stage.to_s.upcase == 'PRODUCTION') && br != 'master'
+      br
+    end
+    puts "*** Deploying to the #{stage.to_s.upcase} server!"
+    update_code
+    migrate
+    symlink
+    restart
+
+    # cleanup old deployments
+    deploy.cleanup
+
+    # Send deployment notification, except for the default stage
+  end
+  
+  desc "Create symlink to shared files and folders on each release."
+  task :symlink_shared do
+    # run "mkdir -p #{shared_dir}/bundle && ln -nfs #{shared_path}/bundle #{release_path}/.bundle"
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+  end
+  
+  after "deploy:update_code", "deploy:symlink_shared"
+end
