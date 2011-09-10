@@ -1,7 +1,5 @@
 load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 
-require 'bundler/capistrano'
-
 # Uncomment if you are using Rails' asset pipeline
 load 'deploy/assets'
 
