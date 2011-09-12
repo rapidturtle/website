@@ -54,12 +54,12 @@ namespace :deploy do
     # Send deployment notification, except for the default stage
   end
   
-  desc "Create symlink to shared files and folders on each release."
-  task :symlink_shared do
-    # run "mkdir -p #{shared_dir}/bundle && ln -nfs #{shared_path}/bundle #{release_path}/.bundle"
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
+  namespace :config do
+    desc "Create symlink to shared files and folders on each release."
+    task :symlink do
+      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    end
   end
   
-  after "deploy:update_code", "deploy:symlink_shared"
+  after "deploy:update_code", "deploy:config:symlink"
 end

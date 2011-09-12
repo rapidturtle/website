@@ -21,8 +21,8 @@ if rvm list strings | grep -q "${ruby_string}" ; then
     # Bundle while reducing excess noise.
     # bundle | grep -v 'Using' | grep -v 'complete' | sed '/^$/d'
   )&
-	
-	# Return to the system default when leaving this directory
+
+	# Switch back to system ruby when leaving this directory
 	rvm_project_rvmrc_default=1
 
 else
