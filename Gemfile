@@ -5,9 +5,9 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-group :development, :test do
-  gem 'sqlite3'
-end
+gem 'sqlite3', :groups => [:development, :test]
+gem 'pg', :group => :staging
+gem 'mysql2', :group => :production
 
 
 # Gems used only for assets and not required
@@ -30,14 +30,20 @@ gem 'capistrano-ext'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+group :development, :test do
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'webrat'
+  gem 'rb-fsevent', :require => false if  RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-cucumber'
+  gem 'guard-pow'
+  gem 'guard-rspec'
+  gem 'growl_notify'
 end
 
 group :staging, :production do
   gem 'execjs'
   gem 'therubyracer'
-  
-  gem 'pg'
 end
