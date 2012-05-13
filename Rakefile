@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Rapidturtle::Application.load_tasks
+RapidTurtle::Application.load_tasks
