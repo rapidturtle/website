@@ -1,29 +1,7 @@
-# This file lists examples for database configurations used in each environment for Wavetronix sites.
-
-development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
-
-test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
-
-staging:
+production:
   adapter: postgresql
   encoding: unicode
-  database: rapidturtle_staging
+  database: rapid_turtle_production
   pool: 5
-  username: 
+  username: deploy
   password: 
-
-production:
-  adapter: mysql2
-  encoding: utf8
-  database: db8898_rapidturtle_production
-  username: 
-  password: 
-  host: external-db.s8898.gridserver.com

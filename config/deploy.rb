@@ -1,47 +1,76 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require 'rvm/capistrano'
-require 'bundler/capistrano'
+# Set staging options before bringing in multistage code—it's just the way the
+# extension works
+set :stages, %w(staging production)
+set :default_stage, 'production'
+require 'capistrano/ext/multistage'
 
 default_run_options[:pty]   = true
 ssh_options[:forward_agent] = true
 
-set :rvm_ruby_string, "1.9.2@rapidturtle"
-
-# repository elsewhere
-set :scm,        :git
-set :repository, "git@github.com:rapidturtle/com.rapidturtle.www.git"
-set :deploy_via, :remote_cache
+require 'bundler/capistrano'
 
 # user settings
-set :user,     "deploy"
 set :use_sudo, false
 
 # application details
 set :application, "com.rapidturtle.www"
+set :domain,      "ve.eyequeue.us"
 
-set :domain,    "ve.eyequeue.us"
-set :deploy_to, "/home/deploy/#{application}"
-set :rails_env, "production"
+# repository elsewhere
+set :scm,        :git
+set :repository, "git@github.com:rapidturtle/#{application}.git"
+set :deploy_via, :remote_cache
 
-role :app, "#{domain}"
-role :web, "#{domain}"
-role :db,  "#{domain}", :primary => true
+server "#{domain}", :app, :web, :db, primary: true
 
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  %w[start stop restart].each do |command|
+    desc "#{command.capitalize} unicorn server"
+    task command, roles: :app, except: { no_release: true } do
+      run "/etc/init.d/unicorn_#{application} #{command}"
+    end
   end
+  
+  task :setup_config, roles: :app do
+    run "mkdir -p #{shared_path}/config"
+    run "mkdir -p #{shared_path}/public/uploads"
+
+    put File.read("config/aws.example.yml"), "#{shared_path}/config/aws.yml"
+    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
+    put File.read("config/nginx.example.conf"), "#{shared_path}/config/nginx.conf"
+    put File.read("config/unicorn_init.example.sh"), "#{shared_path}/config/unicorn_init.sh"
+
+    sudo "ln -nfs #{shared_path}/config/nginx.conf /usr/local/nginx/sites-enabled/#{application}.conf"
+    sudo "ln -nfs #{shared_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+
+    puts "Now edit the config files in #{shared_path}."
+  end
+  after "deploy:setup", "deploy:setup_config"
   
   namespace :config do
     desc "Create symlink to shared files and folders on each release."
     task :symlink do
-      # run "ln -nfs #{shared_path}/config/aws.yml #{release_path}/config/aws.yml"
+      run "ln -nfs #{shared_path}/config/aws.yml #{release_path}/config/aws.yml"
       run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      run "ln -nfs #{shared_path}/public/uploads #{release_path}/public/uploads"
     end
   end
-  
-  after "deploy:update_code", "deploy:config:symlink"
-  before "assets:precompile", "deploy:config:symlink"
+
+  namespace :web do
+    task :disable, :roles => :web, :except => { :no_release => true } do
+      require 'erb'
+      on_rollback { run "rm #{shared_path}/system/maintenance.html" }
+
+      reason = ENV['REASON']
+      deadline = ENV['UNTIL']
+
+      template = File.read("./app/views/layouts/maintenance.html.erb")
+      result = ERB.new(template).result(binding)
+
+      put result, "#{shared_path}/system/maintenance.html", :mode => 0644
+    end
+  end
+   
+  after "deploy:finalize_update", "deploy:config:symlink"
+  after "deploy:restart", "deploy:cleanup"
 end
