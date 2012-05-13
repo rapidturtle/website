@@ -1,3 +1,3 @@
-Rapidturtle::Application.routes.draw do
+RapidTurtle::Application.routes.draw do
   root :to => 'home#index'
 end
