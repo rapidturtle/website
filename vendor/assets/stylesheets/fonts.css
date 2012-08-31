@@ -1,0 +1,89 @@
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicExtraLight.eot');
+  src: url('SeravekWebBasicExtraLight.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicExtraLight.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicExtraLightItalic.eot');
+  src: url('SeravekWebBasicExtraLightItalic.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicExtraLightItalic.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicLight.eot');
+  src: url('SeravekWebBasicLight.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicLightItalic.eot');
+  src: url('SeravekWebBasicLightItalic.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicLightItalic.woff') format('woff');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicRegular.eot');
+  src: url('SeravekWebBasicRegular.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicRegular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicRegularItalic.eot');
+  src: url('SeravekWebBasicRegularItalic.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicRegularItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicMedium.eot');
+  src: url('SeravekWebBasicMedium.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicMedium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicMediumItalic.eot');
+  src: url('SeravekWebBasicMediumItalic.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicMediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicBold.eot');
+  src: url('SeravekWebBasicBold.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Seravek';
+  src: url('SeravekWebBasicBoldItalic.eot');
+  src: url('SeravekWebBasicBoldItalic.eot#iefix') format('embedded-opentype'),
+       url('SeravekWebBasicBoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
