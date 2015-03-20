@@ -13,8 +13,23 @@
   </head>
 
   <body>
-
-    <%= yield %>
-
+    <div class="off-canvas-wrap container" data-offcanvas>
+      <div class="inner-wrap">
+        <%= render 'header' %>
+        <%= render 'flash' %>
+        <div class="main-section row">
+          <div class="medium-12 columns">
+            <%= yield %>
+          </div>
+        </div>
+        <%= render 'footer' %>
+        <%= content_tag :div, class: 'row' do %>
+          <%= content_tag :div, class: 'medium-12 columns' do %>
+            <%= debug params %>
+          <% end %>
+        <% end if Rails.env == 'development' %>
+        <a class="exit-off-canvas"></a>
+      </div>
+    </div>
   </body>
 </html>
