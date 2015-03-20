@@ -1,28 +1,7 @@
-## README
+# Rapid Turtle Website
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/rapidturtle/com.rapidturtle.www.svg)](https://travis-ci.org/rapidturtle/com.rapidturtle.www) [![Dependency Status](https://gemnasium.com/rapidturtle/com.rapidturtle.www.svg)](https://gemnasium.com/rapidturtle/com.rapidturtle.www)
 
-Things you may want to cover:
+## Deployment Instructions
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-`rake doc:app`.
+This application is hosted on Amazon Web Services using OpsWorks. To deploy this application, simply push to the `master` branch. This will kick off a Travis CI build. If the build passes, the application will deploy automatically.

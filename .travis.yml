@@ -1,8 +1,18 @@
-  language: ruby
-  cache: bundler
-  addons:
-    postgresql: "9.4"
-  before_script:
-    - psql -c "create database travis_ci_test;" -U postgres
-    - cp config/database.travis.yml config/database.yml
-    - cp config/secrets.travis.yml config/secrets.yml
+language: ruby
+cache: bundler
+addons:
+  postgresql: '9.3'
+before_script:
+- psql -c "create database travis_ci_test;" -U postgres
+- cp config/database.travis.yml config/database.yml
+- cp config/secrets.travis.yml config/secrets.yml
+deploy:
+  provider: opsworks
+  access_key_id: AKIAIX2XPBWY2OUEGGXA
+  secret-access-key:
+    secure: FxhdpyVmoOr0VeZQrouyzsIDkgPVGR3oWZ+crJdCJP4+ehGdbVgwvLooIPPgABtoLjvUW1qGKOj5+neYn7+IDZ09QY5nRwqKd4cSypiXz/Y9ajbPnjm/VXES3cmch8moYoz0XH1T70FARRAn3zaPuxRRmwkH78ZQWImMUmOoMtY=
+  app-id: 6824e21a-96fa-43fe-8dcc-c53e26e45084
+  migrate: true
+  on:
+    repo: rapidturtle/com.rapidturtle.www
+    branch: master
