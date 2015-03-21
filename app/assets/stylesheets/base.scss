@@ -2,3 +2,26 @@
 @import "font-awesome";
 @import "foundation_and_overrides";
 @import "globals/all";
+
+.site-header {
+  .tab-bar {
+    .site-icon {
+      @include site-icon;
+      background-size: contain;
+    }
+  }
+  .top-bar {
+    .site-icon {
+      @include site-icon;
+      margin-left: 15px;
+    }
+  }
+}
+
+.site-footer {
+  border-top: 1px dotted #ccc;
+  color: #999;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
