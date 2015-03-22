@@ -1,8 +1,16 @@
-.DS_Store
-.bundle
-.sass-cache/
-config/aws.yml
+/log
+/tmp
+/public/system
+**.orig
+
 config/database.yml
-db/*.sqlite3
-log/*.log
-tmp/
+
+## Environment normalization:
+/.bundle
+/vendor/bundle
+
+# these should all be checked in to normalize the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
+
+# Ignore pow environment settings
+.powenv

@@ -1,18 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= locale %>">
   <head>
-    <title>Rapid Turtle</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= full_title yield(:title) %></title>
+
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
+
   <body>
-
-    <%= yield %>
-
-    <footer>
-      <p class="copyright">&copy; <%= Time.now.year %> Rapid Turtle, LLC. All rights reserved.</p>
-    </footer>
-
+    <div class="off-canvas-wrap container" data-offcanvas>
+      <div class="inner-wrap">
+        <%= render 'header' %>
+        <%= render 'flash' %>
+        <div class="main-section row">
+          <div class="medium-12 columns">
+            <%= yield %>
+          </div>
+        </div>
+        <%= render 'footer' %>
+        <%= content_tag :div, class: 'panel' do %>
+          <%= debug params %>
+        <% end if Rails.env == 'development' %>
+        <a class="exit-off-canvas"></a>
+      </div>
+    </div>
   </body>
 </html>
