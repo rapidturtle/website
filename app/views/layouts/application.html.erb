@@ -23,10 +23,8 @@
           </div>
         </div>
         <%= render 'footer' %>
-        <%= content_tag :div, class: 'row' do %>
-          <%= content_tag :div, class: 'medium-12 columns' do %>
-            <%= debug params %>
-          <% end %>
+        <%= content_tag :div, class: 'panel' do %>
+          <%= debug params %>
         <% end if Rails.env == 'development' %>
         <a class="exit-off-canvas"></a>
       </div>
