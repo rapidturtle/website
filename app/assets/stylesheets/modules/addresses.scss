@@ -2,10 +2,12 @@
 @import "globals/all";
 
 .postal-address {
+
   .country,
   .street-address {
     display: block;
   }
+
   .locality::after {
     content: ",";
   }

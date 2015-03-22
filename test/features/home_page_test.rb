@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 feature "Home Page" do
   scenario "Visit the home page" do
