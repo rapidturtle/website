@@ -10,7 +10,7 @@ deploy:
   access_key_id: AKIAIX2XPBWY2OUEGGXA
   secret-access-key:
     secure: FxhdpyVmoOr0VeZQrouyzsIDkgPVGR3oWZ+crJdCJP4+ehGdbVgwvLooIPPgABtoLjvUW1qGKOj5+neYn7+IDZ09QY5nRwqKd4cSypiXz/Y9ajbPnjm/VXES3cmch8moYoz0XH1T70FARRAn3zaPuxRRmwkH78ZQWImMUmOoMtY=
-  app-id: 6824e21a-96fa-43fe-8dcc-c53e26e45084
+  app-id: 3a813d56-ca28-4b2c-b8c0-7a0453bd9bef
   migrate: true
   on:
     repo: rapidturtle/com.rapidturtle.www
