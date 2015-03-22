@@ -5,12 +5,14 @@
 
 .site-header {
   .tab-bar {
+
     .site-icon {
       @include site-icon;
       background-size: contain;
     }
   }
   .top-bar {
+
     .site-icon {
       @include site-icon;
       margin-left: 15px;
@@ -19,12 +21,12 @@
 }
 
 .fa-li {
-  color: #ccc;
+  color: $iron;
 }
 
 .site-footer {
-  border-top: 1px dotted #ccc;
-  color: #999;
+  border-top: 1px dotted $iron;
+  color: $aluminum;
   font-size: 0.8rem;
   margin-top: 1rem;
   padding-top: 1rem;
