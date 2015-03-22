@@ -13,6 +13,9 @@
       <li>
         <%= link_to "#{content_tag :span, nil, class: 'fa fa-fw fa-home'} Home".html_safe, root_path %>
       </li>
+      <!-- <li>
+        <%# link_to "#{content_tag :span, nil, class: 'fa fa-fw fa-cubes'} Services".html_safe, services_path %>
+      </li> -->
       <li>
         <%= link_to "#{content_tag :span, nil, class: 'fa fa-fw fa-comment'} Contact Us".html_safe, contact_path %>
       </li>
@@ -29,6 +32,9 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
+        <!-- <li class="<%= 'active' if params[:controller] == 'static_pages' && params[:action] == 'services' %>">
+          <%# link_to 'Services', services_path %>
+        </li> -->
         <li class="<%= 'active' if params[:controller] == 'static_pages' && params[:action] == 'contact' %>">
           <%= link_to 'Contact Us', contact_path %>
         </li>
