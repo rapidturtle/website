@@ -6,6 +6,11 @@ describe StaticPagesController do
     must_respond_with :success
   end
 
+  it "gets services" do
+    get :services
+    must_respond_with :success
+  end
+
   it "gets contact" do
     get :contact
     must_respond_with :success
