@@ -1,9 +1,9 @@
 @mixin declare-font-face($font-family, $font-filename, $font-weight: normal, $font-style: normal, $font-stretch: normal) {
   @font-face {
     font-family: "#{$font-family}";
-    src: url("//com-rapidturtle-assets.s3.amazonaws.com/fonts/#{$font-filename}.eot");
-    src: url(font-path("//com-rapidturtle-assets.s3.amazonaws.com/fonts/#{$font-filename}.eot?#iefix")) format("embedded-opentype"),
-         url(font-path("//com-rapidturtle-assets.s3.amazonaws.com/fonts/#{$font-filename}.woff")) format("woff");
+    src: url("//assets.rapidturtle.com/fonts/#{$font-filename}.eot");
+    src: url(font-path("//assets.rapidturtle.com/fonts/#{$font-filename}.eot?#iefix")) format("embedded-opentype"),
+         url(font-path("//assets.rapidturtle.com/fonts/#{$font-filename}.woff")) format("woff");
     font-weight: $font-weight;
     font-style: $font-style;
     font-stretch: $font-stretch;
