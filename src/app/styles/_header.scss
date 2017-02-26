@@ -1,0 +1,12 @@
+$site-header-background-color: rgba(black, 0.8);
+$site-header-color: $green;
+
+.site-header {
+  background-color: $site-header-background-color;
+  color: $light-gray;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}

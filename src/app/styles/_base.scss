@@ -1,13 +1,53 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i');
-
-$body-font-family:        'Source Sans Pro', sans-serif;
-$body-font-weight-normal: 300;
-$body-font-size:          16px;
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,600,600i");
 
 :host {
+  display: flex;
+  flex-direction: column;
+
+  color:       $body-color;
   font-family: $body-font-family;
   font-size:   $body-font-size;
   font-weight: $body-font-weight-normal;
+}
+
+.billboard {
+  background-attachment: fixed;
+  background-position: center;;
+  background-repeat: no-repeat;
+
+  height: 100vh;
+  width: 100%;
+}
+
+// Small only
+@media screen and (max-width: 39.9375em) {
+  .billboard {
+    background-image: url("/assets/icon_RapidTurtle_white.svg"), url("/assets/hero_HomePage_small.jpg");
+    background-size: 50%, cover;
+  }
+}
+
+// Medium and up
+@media screen and (min-width: 40em) {
+  .billboard {
+    background-image: url("/assets/icon_RapidTurtle_white.svg"), url("/assets/hero_HomePage_medium.jpg");
+    background-size: 33%, cover;
+  }
+}
+
+// Large and up
+@media screen and (min-width: 64em) {
+  .billboard {
+    background-image: url("/assets/icon_RapidTurtle_white.svg"), url("/assets/hero_HomePage_large.jpg");
+    background-size: 20%, cover;
+  }
+}
+
+// Extra large and up
+@media screen and (min-width: 75em) {
+  .billboard {
+    background-size: 10%, cover;
+  }
 }
 
 // -----------------------------------------------------------------------------
