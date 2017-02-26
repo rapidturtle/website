@@ -1,17 +1,41 @@
-/coverage
-/log
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
 /tmp
-/public/system
-**.orig
 
-config/database.yml
+# dependencies
+/node_modules
 
-## Environment normalization:
-/.bundle
-/vendor/bundle
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# these should all be checked in to normalize the environment:
-# Gemfile.lock, .ruby-version, .ruby-gemset
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# Ignore pow environment settings
-.powenv
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
