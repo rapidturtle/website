@@ -1,5 +1,7 @@
 # Rapidturtle
 
+![](https://github.com/rapidturtle/website/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
 ## Development server
