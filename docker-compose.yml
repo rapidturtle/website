@@ -7,16 +7,18 @@ services:
     command: ng serve --host 0.0.0.0 --disableHostCheck
     depends_on:
       - proxy
-    environment:
-      - ENABLE_POLLING=${ENABLE_POLLING}
+    # environment:
+    #   - ENABLE_POLLING=${ENABLE_POLLING}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.app.rule=Host(`rapidturtle.localhost`)"
       - "traefik.http.routers.app.entryPoints=http"
     volumes:
-      # - .:/home/app/rapidturtle
       - ./src:/home/app/rapidturtle/src:delegated
+      - ./angular.json:/home/app/rapidturtle/angular.json
       - ./package.json:/home/app/rapidturtle/package.json
+      - ./tsconfig.app.json:/home/app/rapidturtle/tsconfig.app.json
+      - ./tsconfig.json:/home/app/rapidturtle/tsconfig.json
       - ./yarn.lock:/home/app/rapidturtle/yarn.lock
 
   proxy:

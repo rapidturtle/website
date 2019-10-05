@@ -1,11 +1,11 @@
 FROM node:12-alpine
 
 LABEL maintainer = Andrew Porter
-LABEL name = twincresttech.com
+LABEL name = rapidturtle.com
 
 ##
 # Set any environment variables
-ENV APP_DIR=/home/app/twincrest
+ENV APP_DIR=/home/app/rapidturtle
 
 ##
 # Install Angular CLI
