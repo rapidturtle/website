@@ -8,8 +8,9 @@ LABEL name = rapidturtle.com
 ENV APP_DIR=/home/app/rapidturtle
 
 ##
-# Install Angular CLI
+# Install Angular CLI and AWS Amplify CLI
 RUN yarn global add @angular/cli && ng config -g cli.packageManager yarn
+RUN yarn global add @aws-amplify/cli
 
 ##
 # Create a cache layer with package.json for node_modules
